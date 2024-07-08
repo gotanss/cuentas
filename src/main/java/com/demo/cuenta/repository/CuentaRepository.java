@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.demo.cuenta.entity.Cuenta;
+import com.demo.cuenta.entity.ETipoCuenta;
 
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 
@@ -14,5 +15,7 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
    Optional<Cuenta> findByIdForUpdate(Long id);
 
    List<Cuenta> findByCliente(Long clienteId);
+
+   boolean existsCuentaByClienteAndTipoCuenta(Long idClient, ETipoCuenta tipoCuenta);
 
 }

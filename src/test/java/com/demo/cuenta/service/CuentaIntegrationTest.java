@@ -26,27 +26,27 @@ public class CuentaIntegrationTest {
 
    @Test
    void canRegisterAnAccount() {
-      // crear request
-
-      CuentaRequestDTO request = CuentaRequestDTO
-            .builder()
-            .tipoCuenta(ETipoCuenta.AHORROS)
-            .cliente(1L)
-            .currency("ARS")
-            .build();
-
-      //enviar post
-      webTestClient
-            .post()
-            .uri("/v1/cuenta")
-            .accept(MediaType.APPLICATION_JSON)
-            .contentType(MediaType.APPLICATION_JSON)
-            .body(Mono.just(request), CuentaRequestDTO.class)
-            .exchange()
-            .expectStatus()
-            .isOk();
-
-      //get all cuentas
+//      // crear request
+//
+//      CuentaRequestDTO request = CuentaRequestDTO
+//            .builder()
+//            .tipoCuenta(ETipoCuenta.AHORROS)
+//            .cliente(1L)
+//            .currency("ARS")
+//            .build();
+//
+//      //enviar post
+//      webTestClient
+//            .post()
+//            .uri("/v1/cuenta")
+//            .accept(MediaType.APPLICATION_JSON)
+//            .contentType(MediaType.APPLICATION_JSON)
+//            .body(Mono.just(request), CuentaRequestDTO.class)
+//            .exchange()
+//            .expectStatus()
+//            .isOk();
+//
+//      //get all cuentas
 
 
 

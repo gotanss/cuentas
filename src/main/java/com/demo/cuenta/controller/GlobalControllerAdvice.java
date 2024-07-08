@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.demo.cuenta.exception.CuentaNotFoundException;
+import com.demo.cuenta.exception.DuplicateResourceException;
 import com.demo.cuenta.exception.ErrorCatalog;
 import com.demo.cuenta.exception.ErrorResponse;
 import com.demo.cuenta.exception.SaldoInsuficienteException;
@@ -77,4 +78,15 @@ public class GlobalControllerAdvice {
       return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
    }
 
+   @ResponseStatus(HttpStatus.CONFLICT)
+   @ExceptionHandler(DuplicateResourceException.class)
+   public ErrorResponse handleGenericError(HttpServletRequest request) {
+      return ErrorResponse
+            .builder()
+            .path(request.getRequestURI())
+            .status(HttpStatus.CONFLICT.value())
+            .message(ErrorCatalog.ACCOUNT_CREATION_ERROR.getMessage())
+            .timestamp(LocalDateTime.now())
+            .build();
+   }
 }
